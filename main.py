@@ -11,6 +11,11 @@ cross_aisle = "u"
 
 rack_width_count = 0
 
+end_a_cab = 0
+end_a_ru = 0
+end_b_cab = 0
+end_b_ru = 0
+
 #constants
 RU = 1.75
 RACK_WIDTH = 31.5
@@ -26,32 +31,9 @@ FIBER_TRAY_HEIGHT = 22
 R101_TO_DMARC = 45.2
 DMARC_TO_FIBER_PATCH = 17
 
-while True:
-    same_cab = input("Copper or fiber? (c/f): ").strip().lower()
-    if same_cab in ("c", "f"):
-        break
-    print("Please enter 'y' or 'n'.")
-while True:
-    same_cab = input("Does run leave the cabinet? (y/n): ").strip().lower()
-    if same_cab in ("y", "n"):
-        break
-    print("Please enter 'y' or 'n'.")
-while True:
-    end_a_facing = input("End-A facing (f/r)?").strip().lower()
-    if end_a_facing in ("f", "r"):
-        break
-    print("Please enter 'f' or 'r'.")
-while True:
-    end_b_facing = input("End-B facing (f/r)?").strip().lower()
-    if end_b_facing in ("f", "r"):
-        break
-    print("Please enter 'f' or 'r'.")
-if(same_cab=="y"):
-    while True:
-        cross_aisle = input("Does cable cross aisle? (y/n): ").strip().lower()
-        if cross_aisle in ("y", "n"):
-            break
-        print("Please enter 'y' or 'n'.")
-else:
-    cross_aisle=="n"
+media_type = input("Copper or fiber (c/f): ")
+end_a_cab = input("End A cabinet (1xx/2xx): ")
+end_a_ru = input("End A RU: ")
+end_b_cab = input("End B cabinet (1xx/2xx): ")
+end_b_ru = input("End B RU: ")
 #
