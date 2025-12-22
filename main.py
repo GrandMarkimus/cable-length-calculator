@@ -12,9 +12,7 @@ cross_aisle = "u"
 rack_width_count = 0
 
 end_a_cab = 0
-end_a_ru = 0
 end_b_cab = 0
-end_b_ru = 0
 
 #constants
 RU = 1.75
@@ -36,4 +34,6 @@ end_a_cab = input("End A cabinet (1xx/2xx): ")
 end_a_ru = input("End A RU: ")
 end_b_cab = input("End B cabinet (1xx/2xx): ")
 end_b_ru = input("End B RU: ")
+
+
 #
