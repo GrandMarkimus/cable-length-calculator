@@ -18,7 +18,7 @@ RACK_HEIGHT = 89.9
 RACK_DEPTH = 47.2
 AISLE = 86.65
 
-end_a_facing = input("End-A facing (F/R)?")
-end_b_facing = input("End-B facing (F/R)?")
-cross_aisle = input("Does cable cross aisle (Y/N)?")
+end_a_facing = input("End-A facing (f/r)?")
+end_b_facing = input("End-B facing (f/r)?")
+cross_aisle = input("Does cable cross aisle (y/n)?")
 
