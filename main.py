@@ -31,9 +31,10 @@ DMARC_TO_FIBER_PATCH = 17
 
 media_type = input("Copper or fiber (c/f): ")
 end_a_cab = input("End A cabinet (1xx/2xx): ")
-end_a_ru = input("End A RU: ")
+end_a_ru = input("End A RU (0-48): ")
+end_a_facing = input("End A facing (f/r): ")
 end_b_cab = input("End B cabinet (1xx/2xx): ")
-end_b_ru = input("End B RU: ")
-
+end_b_ru = input("End B RU (0-48): ")
+end_b_facing = input("End B facing (f/r): ")
 
 #
