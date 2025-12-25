@@ -2,11 +2,11 @@ import math
 
 #variables to determine
 media_type = "u"
-end_a_facing = "u"
-end_b_facing = "u"
+cab_a_face = "u"
+cab_b_face = "u"
 same_cab = False
-end_a_ru = 0 #range 0 to 48
-end_b_ru = 0 #range 0 to 48
+cab_a_ru = 0 #range 0 to 48
+cab_b_ru = 0 #range 0 to 48
 cross_aisle = False
 dist_x_cabs = 0
 
@@ -15,7 +15,7 @@ rack_width_count = 0
 end_a_cab = 0
 end_b_cab = 0
 
-#constants
+#Constants
 RU = 1.75
 RACK_WIDTH = 31.5
 #RACK_HEIGHT = 89.9
@@ -30,19 +30,40 @@ FIBER_TRAY_HEIGHT = 22
 R101_TO_DMARC = 45.2
 DMARC_TO_FIBER_PATCH = 17
 
-#media_type = input("Copper or fiber (c/f): ")
-end_a_cab = input("End A cabinet (1xx/2xx): ")
-end_a_cab = int(end_a_cab)
-#end_a_ru = input("End A RU (0-48): ")
-#end_a_facing = input("End A facing (f/r): ")
-end_b_cab = input("End B cabinet (1xx/2xx): ")
-end_b_cab = int(end_b_cab)
-#end_b_ru = input("End B RU (0-48): ")
-#end_b_facing = input("End B facing (f/r): ")
+
+def facing_and_ru(face, ru):
+  face = input("Front or Rear (f/r): ")
+  ru = input("RU (0-48): ")
+  return face
+
+def media_and_cab(media, cab):
+  media = input("Copper or fiber (c/f): ")
+  cab = int(input("Cabinet (1xx/2xx): "))
+
+#start
+same_cab = input("Does this cable leave the cabinet (y/n): ")
+if(same_cab == "n"):
+  #cable run doesn't leave the cabinet
+  same_cab = False
+  cab_a = 101
+  cab_b = 101
+  print("Enter information for device #1 \n")
+  facing_and_ru(cab_a_face,cab_a_ru)
+  print("Enter information for device #2 \n")
+  facing_and_ru(cab_b_face,cab_b_ru)
+  print("cab a:\n")
+  print(cab_a_face)
+  print(cab_a_ru)
+
+else:
+  #cable run leaves the cabinet
+  same_cab = True
+  #get media type
+  #get cabinet a/b
+  #get facing a/b
+  #get ru a/b
 
 dist_x_cabs = abs(end_a_cab - end_b_cab)
-if(dist_x_cabs > 99):
-  cross_aisle = True
-print(dist_x_cabs)
-print(cross_aisle)
+
+
 #
