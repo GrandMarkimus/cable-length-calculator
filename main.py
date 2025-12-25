@@ -7,7 +7,8 @@ end_b_facing = "u"
 same_cab = "u"
 end_a_ru = 0 #range 0 to 48
 end_b_ru = 0 #range 0 to 48
-cross_aisle = "u"
+cross_aisle = False
+dist_x_cabs = 0
 
 rack_width_count = 0
 
@@ -29,12 +30,19 @@ FIBER_TRAY_HEIGHT = 22
 R101_TO_DMARC = 45.2
 DMARC_TO_FIBER_PATCH = 17
 
-media_type = input("Copper or fiber (c/f): ")
+#media_type = input("Copper or fiber (c/f): ")
 end_a_cab = input("End A cabinet (1xx/2xx): ")
-end_a_ru = input("End A RU (0-48): ")
-end_a_facing = input("End A facing (f/r): ")
+end_a_cab = int(end_a_cab)
+#end_a_ru = input("End A RU (0-48): ")
+#end_a_facing = input("End A facing (f/r): ")
 end_b_cab = input("End B cabinet (1xx/2xx): ")
-end_b_ru = input("End B RU (0-48): ")
-end_b_facing = input("End B facing (f/r): ")
+end_b_cab = int(end_b_cab)
+#end_b_ru = input("End B RU (0-48): ")
+#end_b_facing = input("End B facing (f/r): ")
 
+dist_x_cabs = abs(end_a_cab - end_b_cab)
+if(dist_x_cabs > 99):
+  cross_aisle = True
+print(dist_x_cabs)
+print(cross_aisle)
 #
