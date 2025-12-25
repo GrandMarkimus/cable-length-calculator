@@ -31,37 +31,50 @@ R101_TO_DMARC = 45.2
 DMARC_TO_FIBER_PATCH = 17
 
 
-def facing_and_ru(face, ru):
+def facing_and_ru():
   face = input("Front or Rear (f/r): ")
-  ru = input("RU (0-48): ")
-  return face
+  ru = int(input("RU (0-48): "))
+  return face,ru
 
-def media_and_cab(media, cab):
-  media = input("Copper or fiber (c/f): ")
+def cab():
   cab = int(input("Cabinet (1xx/2xx): "))
+
+def media():
+  media = input("Copper or fiber (c/f): ")
+
 
 #start
 same_cab = input("Does this cable leave the cabinet (y/n): ")
 if(same_cab == "n"):
   #cable run doesn't leave the cabinet
-  same_cab = False
+  same_cab = True
   cab_a = 101
   cab_b = 101
   print("Enter information for device #1 \n")
-  facing_and_ru(cab_a_face,cab_a_ru)
+  cab_a_face,cab_a_ru = facing_and_ru()
   print("Enter information for device #2 \n")
-  facing_and_ru(cab_b_face,cab_b_ru)
+  cab_b_face,cab_b_ru = facing_and_ru()
   print("cab a:\n")
   print(cab_a_face)
   print(cab_a_ru)
+  print("cab b:\n")
+  print(cab_b_face)
+  print(cab_b_ru)
 
 else:
   #cable run leaves the cabinet
-  same_cab = True
-  #get media type
-  #get cabinet a/b
-  #get facing a/b
-  #get ru a/b
+  same_cab = False
+  media_type = media()
+  cab_a = cab()
+  cab_a_face,cab_a_ru = facing_and_ru()
+  cab_b = cab()
+  cab_b_face,cab_b_ru = facing_and_ru()
+  print("cab a:\n")
+  print(cab_a_face)
+  print(cab_a_ru)
+  print("cab b:\n")
+  print(cab_b_face)
+  print(cab_b_ru)
 
 dist_x_cabs = abs(end_a_cab - end_b_cab)
 
