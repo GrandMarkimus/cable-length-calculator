@@ -9,6 +9,7 @@ cab_a_ru = 0 #range 0 to 48
 cab_b_ru = 0 #range 0 to 48
 cross_aisle = False
 dist_x_cabs = 0
+total_length = 0
 
 rack_width_count = 0
 
@@ -38,10 +39,16 @@ def facing_and_ru():
 
 def cab():
   cab = int(input("Cabinet (1xx/2xx): "))
+  return cab
 
 def media():
   media = input("Copper or fiber (c/f): ")
+  return media
 
+def print_all(cab,face,ru):
+  print(cab)
+  print(face)
+  print(ru)
 
 #start
 same_cab = input("Does this cable leave the cabinet (y/n): ")
@@ -64,19 +71,18 @@ if(same_cab == "n"):
 else:
   #cable run leaves the cabinet
   same_cab = False
+  #Add top gap for both cabs
+  total_length = TOP_GAP*2
   media_type = media()
   cab_a = cab()
   cab_a_face,cab_a_ru = facing_and_ru()
   cab_b = cab()
   cab_b_face,cab_b_ru = facing_and_ru()
-  print("cab a:\n")
-  print(cab_a_face)
-  print(cab_a_ru)
-  print("cab b:\n")
-  print(cab_b_face)
-  print(cab_b_ru)
+  print("cab a:")
+  print_all(cab_a,cab_a_face,cab_a_ru)
+  print("\ncab b:")
+  print_all(cab_b,cab_b_face,cab_b_ru)
+  print(f"Total cable length: {total_length}")
 
 dist_x_cabs = abs(end_a_cab - end_b_cab)
-
-
 #
