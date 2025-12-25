@@ -4,7 +4,7 @@ import math
 media_type = "u"
 end_a_facing = "u"
 end_b_facing = "u"
-same_cab = "u"
+same_cab = False
 end_a_ru = 0 #range 0 to 48
 end_b_ru = 0 #range 0 to 48
 cross_aisle = False
