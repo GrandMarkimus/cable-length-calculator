@@ -61,13 +61,11 @@ def tray_height():
 def in_to_ft(inches):
   feet = int(inches // 12)
   remaining_inches = round(inches % 12,2)
-  
   print(f"{feet}ft {remaining_inches}in")
 #
 def in_to_m(inches):
   meters = round(inches * .0254,2)
   print(f"{meters}m")
-
 
 #device 1 info
 device_1.cab = get_cab()
