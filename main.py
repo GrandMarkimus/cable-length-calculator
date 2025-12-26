@@ -15,10 +15,11 @@ cable_length = 0
 RU = 1.75
 TOP_GAP = 3
 FTB_RU = 29
+CAB_WIDTH = 31.5
 CAB_DEPTH = 47.2
 AISLE = 87.5
-COPPER_TRAY_HEIGHT = 9.5
-FIBER_TRAY_HEIGHT = 22
+DMARC_FIBER_PATCH_HEIGHT = 17
+DMARC_TO_101 = 45.2
 
 #functions
 #------
@@ -30,6 +31,7 @@ def yes_no(prompt: str) -> bool:
             return val == "y"
         print("Please enter y or n")
 #
+#Get cabinet number
 def get_cab() -> int:
   while True:
     try:
@@ -40,6 +42,7 @@ def get_cab() -> int:
     except ValueError:
       print("Invalid input. Must enter a number")
 #
+#Get RU
 def get_ru() -> int:
   while True:
     try:
@@ -50,23 +53,42 @@ def get_ru() -> int:
     except ValueError:
       print("Invalid input. Must enter a number")
 #
+#Output device information
 def print_dev_info(dev):
   print(f"Cab: {dev.cab}")
   print(f"Face: {dev.face}")
   print(f"RU: {dev.ru}")
 #
-def tray_height():
+#Determine copper or fiber tray and return height x2
+def tray_type():
+  COPPER_TRAY_HEIGHT = 9.5*2
+  FIBER_TRAY_HEIGHT = 22*2
+  #
   media_type = yes_no("Copper run (y/n): ")
+  if media_type == True:
+    return COPPER_TRAY_HEIGHT
+  else:
+    return FIBER_TRAY_HEIGHT
 #
+#Calculate and output distance to aisle crossing
+def dist_to_aisle_xing():
+  device_1_xing = abs(device_1.cab - 103)
+  device_2_xing = abs(device_2.cab - 203)
+  result = (device_1_xing + device_2_xing)*CAB_WIDTH
+  return result
+#
+#Convert and output imperial measurement
 def in_to_ft(inches):
   feet = int(inches // 12)
   remaining_inches = round(inches % 12,2)
   print(f"{feet}ft {remaining_inches}in")
 #
+#Convert and output metric measurement
 def in_to_m(inches):
   meters = round(inches * .0254,2)
   print(f"{meters}m")
 
+#__main__
 #device 1 info
 device_1.cab = get_cab()
 device_1.face = yes_no("Rear facing (y/n): ")
@@ -105,12 +127,20 @@ if device_1.cab == device_2.cab:
     in_to_m(cable_length)
 else:
 # diff cabs
-  tray_height = cable_media()
+  tray_height = tray_type()
+  #need to capture distance from cab to aisle crossing which is middle of 103
+  #101 would cross 102 and half 103
+  #104 would cross 104 and half 103
   if abs(device_1.cab - device_2.cab) >= 100:
     #diff rows
-    cable_length = (48 - device_1.ru)*RU
+    cable_length = dist_to_aisle_xing()
+    cable_length = (48 - device_1.ru)*RU + cable_length
     cable_length = (48 - device_2.ru)*RU + cable_length
-    cable_length = cable_length + TOP_GAP
+    cable_length = TOP_GAP + cable_length
+    cable_length = AISLE + cable_length
+    cable_length = tray_height + cable_length
+    in_to_ft(cable_length)
+    in_to_m(cable_length)
 
 
 
