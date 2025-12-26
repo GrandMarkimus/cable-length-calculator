@@ -161,7 +161,7 @@ else:
 #    dev2 48 minus RU + top_gap
 #    dev2 distance to tray (c/f)
 #    distance between cabs
-#  dif cabs dif row
+#  dif cabs dif row done
 #    dev1 48 minus RU + top_gap
 #    dev1 distance to tray (c/f)
 #    dev2 48 minus RU + top_gap
