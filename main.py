@@ -128,9 +128,6 @@ if device_1.cab == device_2.cab:
 else:
 # diff cabs
   tray_height = tray_type()
-  #need to capture distance from cab to aisle crossing which is middle of 103
-  #101 would cross 102 and half 103
-  #104 would cross 104 and half 103
   if abs(device_1.cab - device_2.cab) >= 100:
     #diff rows
     cable_length = dist_to_aisle_xing()
@@ -141,30 +138,13 @@ else:
     cable_length = tray_height + cable_length
     in_to_ft(cable_length)
     in_to_m(cable_length)
-
-
-
-
-
-
-#
-#scenarios
-#  same cab same side   done
-#    RU between devices
-#  same cab dif sides   done
-#    dev1 RU to trough
-#    dev2 RU to trough
-#    cabinet depth
-#  dif cabs same row
-#    dev1 48 minus RU + top_gap
-#    dev1 distance to tray (c/f)
-#    dev2 48 minus RU + top_gap
-#    dev2 distance to tray (c/f)
-#    distance between cabs
-#  dif cabs dif row done
-#    dev1 48 minus RU + top_gap
-#    dev1 distance to tray (c/f)
-#    dev2 48 minus RU + top_gap
-#    dev2 distance to tray (c/f)
-#    distance between cabs
-#    aisle distance
+  else:
+    #diff cab same row
+    cable_length = (48 - device_1.ru)*RU
+    cable_length = (48 - device_2.ru)*RU + cable_length
+    cable_length = TOP_GAP + cable_length
+    cable_length = tray_height + cable_length
+    cab_cab_distance = (device_1.cab - device_2.cab) * CAB_WIDTH
+    cable_length = cab_cab_distance + cable_length
+    in_to_ft(cable_length)
+    in_to_m(cable_length)
